@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AKKI'S HUB - Interactive Personal Digital Playground by Akash Maurya (Akki). Games, AI Terminal, Tech Lab, Project Archive, and Secret Vault with futuristic neon cyber aesthetic.">
+    <title>AKKI'S HUB | Interactive Personal Digital Playground</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Local font fallback -->
+    <link rel="stylesheet" href="css2">
+    <!-- Primary Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Canvas Grid & Particles -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Matrix Falling Code Rain Canvas (Triggered via Terminal / Konami) -->
+    <canvas id="matrix-canvas" class="matrix-rain-hidden"></canvas>
+
+    <!-- Custom Cursor Glow (Desktop) -->
+    <div class="glow-cursor" id="glow-cursor"></div>
+
+    <div class="app-container">
+        <!-- Top Cyber Status Bar -->
+        <header class="status-bar">
+            <div class="status-left">
+                <span class="status-dot"></span>
+                <span class="status-text">HUB STATUS: <span class="highlight-green">ONLINE</span></span>
+                <span class="status-ticker" id="system-status-ticker">NODE: LOCAL ACTIVE</span>
+            </div>
+            <div class="status-right">
+                <button class="sound-toggle" id="sound-toggle" type="button" aria-label="Toggle Sound Effects">
+                    <span id="sound-icon">🔊</span> <span id="sound-label">AUDIO: SFX ON</span>
+                </button>
+                <div class="clock" id="live-clock">00:00:00</div>
+            </div>
+        </header>
+
+        <!-- Hero Header -->
+        <section class="hero-section">
+            <div class="cyber-badge">
+                <span class="badge-pulse"></span> PORTAL V2.0 • DIGITAL PLAYGROUND
+            </div>
+            <h1 class="main-title" data-text="AKKI'S HUB">AKKI'S HUB</h1>
+            <div class="hero-identity">
+                <span class="identity-name">AKASH MAURYA</span>
+                <span class="identity-divider">//</span>
+                <span class="identity-roles">DEVELOPER · GAMER · TECH EXPLORER</span>
+            </div>
+            <p class="subtitle">"I build things just to see what's possible."</p>
+            <p class="tagline">"Don't just visit. <span class="interactive-glow" id="mess-around-trigger" title="Click to interact!">Mess around.</span>"</p>
+        </section>
+
+        <!-- Navigation Cards Grid: 6 Main Playground Modules -->
+        <main class="cards-grid" id="cards-container">
+            <!-- Card 1: Games -->
+            <article class="hub-card" data-category="games" data-title="Games" data-icon="🎮" data-progress="100" data-desc="Akki Arcade: Play Cyber Snake, rack up high scores, and unlock retro matrix achievements.">
+                <div class="card-glow-bg cyan-glow"></div>
+                <div class="card-content">
+                    <div class="card-icon-wrapper cyan">
+                        <span class="card-icon">🎮</span>
+                    </div>
+                    <div class="card-info">
+                        <span class="card-tag">MODULE 01</span>
+                        <h2 class="card-title">Games</h2>
+                        <p class="card-subtitle">Arcade &amp; Cyber Snake</p>
+                    </div>
+                    <div class="card-status-badge cyan-badge">PLAYABLE // ARCADE</div>
+                </div>
+                <div class="card-corner-decor"></div>
+            </article>
+
+            <!-- Card 2: AI Zone -->
+            <article class="hub-card" data-category="ai" data-title="AI Zone" data-desc="Akki Local Node: Interactive offline terminal chat simulation exploring tech, gaming, and curiosities." data-icon="🤖" data-progress="100">
+                <div class="card-glow-bg purple-glow"></div>
+                <div class="card-content">
+                    <div class="card-icon-wrapper purple">
+                        <span class="card-icon">🤖</span>
+                    </div>
+                    <div class="card-info">
+                        <span class="card-tag">MODULE 02</span>
+                        <h2 class="card-title">AI Zone</h2>
+                        <p class="card-subtitle">Akki Local Node Terminal</p>
+                    </div>
+                    <div class="card-status-badge purple-badge">ONLINE // LOCAL AI</div>
+                </div>
+                <div class="card-corner-decor"></div>
+            </article>
+
+            <!-- Card 3: Tech Lab -->
+            <article class="hub-card" data-category="lab" data-title="Tech Lab" data-desc="Particle Gravity Lab: Interactive real-time physics sandbox with cursor attraction, repulsion, and energy bursts." data-icon="🧪" data-progress="100">
+                <div class="card-glow-bg emerald-glow"></div>
+                <div class="card-content">
+                    <div class="card-icon-wrapper emerald">
+                        <span class="card-icon">🧪</span>
+                    </div>
+                    <div class="card-info">
+                        <span class="card-tag">MODULE 03</span>
+                        <h2 class="card-title">Tech Lab</h2>
+                        <p class="card-subtitle">Particle Gravity Lab</p>
+                    </div>
+                    <div class="card-status-badge emerald-badge">INTERACTIVE // PHYSICS</div>
+                </div>
+                <div class="card-corner-decor"></div>
+            </article>
+
+            <!-- Card 4: Projects -->
+            <article class="hub-card" data-category="projects" data-title="Projects" data-desc="Interactive Project Archive: Churn Prediction, Iris Attendance, Delhi Metro Dijkstra, and Web experiments." data-icon="💻" data-progress="100">
+                <div class="card-glow-bg blue-glow"></div>
+                <div class="card-content">
+                    <div class="card-icon-wrapper blue">
+                        <span class="card-icon">💻</span>
+                    </div>
+                    <div class="card-info">
+                        <span class="card-tag">MODULE 04</span>
+                        <h2 class="card-title">Projects</h2>
+                        <p class="card-subtitle">Interactive Project Archive</p>
+                    </div>
+                    <div class="card-status-badge blue-badge">ARCHIVE // 4 ENTRIES</div>
+                </div>
+                <div class="card-corner-decor"></div>
+            </article>
+
+            <!-- Card 5: About Akki -->
+            <article class="hub-card" data-category="about" data-title="About Akki" data-desc="Akki Identity Profile: Developer skills, gaming lore, tech passions, and active projects." data-icon="👤" data-progress="100">
+                <div class="card-glow-bg amber-glow"></div>
+                <div class="card-content">
+                    <div class="card-icon-wrapper amber">
+                        <span class="card-icon">👤</span>
+                    </div>
+                    <div class="card-info">
+                        <span class="card-tag">MODULE 05</span>
+                        <h2 class="card-title">About Akki</h2>
+                        <p class="card-subtitle">Profile, Skills &amp; Gear</p>
+                    </div>
+                    <div class="card-status-badge amber-badge">PROFILE // READY</div>
+                </div>
+                <div class="card-corner-decor"></div>
+            </article>
+
+            <!-- Card 6: Secret -->
+            <article class="hub-card secret-card" data-category="secret" data-title="Secret Area" data-desc="[RESTRICTED ACCESS] Akki Secure Terminal: Interactive cyber CLI with unlock codes and secret modes." data-icon="👾" data-progress="42">
+                <div class="card-glow-bg crimson-glow"></div>
+                <div class="card-content">
+                    <div class="card-icon-wrapper crimson">
+                        <span class="card-icon">👾</span>
+                    </div>
+                    <div class="card-info">
+                        <span class="card-tag">MODULE 06</span>
+                        <h2 class="card-title">Secret</h2>
+                        <p class="card-subtitle">Secure Terminal Vault</p>
+                    </div>
+                    <div class="card-status-badge crimson-badge locked" id="secret-card-badge">LOCKED // TERMINAL</div>
+                </div>
+                <div class="card-corner-decor"></div>
+            </article>
+        </main>
+
+        <!-- Dedicated Connection Hub: CONNECT // AKKI -->
+        <section class="connect-section" id="connect-section">
+            <div class="section-header">
+                <div class="cyber-badge-sm">DIRECT FREQUENCIES</div>
+                <h2 class="section-title">CONNECT // AKKI</h2>
+                <p class="section-subtitle">Official social portals &amp; communication coordinates.</p>
+            </div>
+            <div class="connect-grid">
+                <!-- 1. Instagram -->
+                <a href="https://www.instagram.com/akki.aia?stkn=MW1sYXNsMWkwM3p6aA==" target="_blank" rel="noopener noreferrer" class="connect-card connect-instagram" id="connect-insta" title="Open Instagram Profile">
+                    <div class="connect-card-glow"></div>
+                    <div class="connect-card-inner">
+                        <div class="connect-icon-box insta-box">
+                            <span class="connect-icon">📸</span>
+                        </div>
+                        <div class="connect-meta">
+                            <span class="connect-label">VISUAL FREQUENCY</span>
+                            <h3 class="connect-name">INSTAGRAM</h3>
+                            <span class="connect-handle">@akki.aia</span>
+                        </div>
+                        <div class="connect-action-pill">
+                            <span class="action-text">OPEN PORTAL</span>
+                            <span class="action-arrow">↗</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 2. Discord -->
+                <div class="connect-card connect-discord" id="connect-discord">
+                    <div class="connect-card-glow"></div>
+                    <div class="connect-card-inner">
+                        <div class="connect-icon-box discord-box">
+                            <span class="connect-icon">💬</span>
+                            <span class="comm-pulse-dot" title="Active Node"></span>
+                        </div>
+                        <div class="connect-meta">
+                            <span class="connect-label">COMMUNICATION NODE</span>
+                            <h3 class="connect-name">DISCORD</h3>
+                            <span class="connect-handle">Akki <span class="sub-handle">(@justakki1)</span></span>
+                            <span class="connect-id-badge">ID: 1228563784273235998</span>
+                        </div>
+                        <div class="connect-button-group">
+                            <button type="button" class="connect-btn" id="copy-discord-user-btn" data-copy="justakki1" aria-label="Copy Discord Username">
+                                <span class="btn-icon">📋</span> COPY USERNAME
+                            </button>
+                            <button type="button" class="connect-btn-sub" id="copy-discord-id-btn" data-copy="1228563784273235998" aria-label="Copy Discord User ID">
+                                COPY ID
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Spotify -->
+                <a href="https://open.spotify.com/user/31buuhbti6rxz4adeayrydfdptfm?si=9PVl7yDCQ0uoSQo91Xl9BQ&utm_source=copy-link" target="_blank" rel="noopener noreferrer" class="connect-card connect-spotify" id="connect-spotify" title="Open Spotify Profile">
+                    <div class="connect-card-glow"></div>
+                    <div class="connect-card-inner">
+                        <div class="connect-icon-box spotify-box">
+                            <span class="connect-icon">🎧</span>
+                            <div class="equalizer-bars" aria-hidden="true">
+                                <span></span><span></span><span></span><span></span>
+                            </div>
+                        </div>
+                        <div class="connect-meta">
+                            <span class="connect-label">AUDIO FREQUENCY</span>
+                            <h3 class="connect-name">SPOTIFY</h3>
+                            <span class="connect-handle">AKKI'S MUSIC</span>
+                        </div>
+                        <div class="connect-action-pill">
+                            <span class="action-text">TUNE IN</span>
+                            <span class="action-arrow">↗</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 4. Roblox -->
+                <a href="https://www.roblox.com/share?code=707966845ea2d34a98edda26befe95cc&type=Profile&source=ProfileShare&stamp=1790224261469" target="_blank" rel="noopener noreferrer" class="connect-card connect-roblox" id="connect-roblox" title="Open Roblox Profile">
+                    <div class="connect-card-glow"></div>
+                    <div class="connect-card-inner">
+                        <div class="connect-icon-box roblox-box">
+                            <span class="connect-icon">🎮</span>
+                        </div>
+                        <div class="connect-meta">
+                            <span class="connect-label">GAMING REALM</span>
+                            <h3 class="connect-name">ROBLOX</h3>
+                            <span class="connect-handle">AKKI // PLAYER</span>
+                        </div>
+                        <div class="connect-action-pill">
+                            <span class="action-text">JOIN SERVER</span>
+                            <span class="action-arrow">↗</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Cyber Footer -->
+        <footer class="cyber-footer">
+            <div class="footer-divider"></div>
+            <p class="footer-quote">"YOU FOUND AKKI'S HUB. DON'T JUST VISIT. MESS AROUND."</p>
+            <p class="footer-text">Built with curiosity &amp; code by <span class="author-highlight">Akki</span>.</p>
+            <div class="footer-telemetry">
+                <span>PING: <span id="ping-val">12</span>ms</span>
+                <span class="separator">•</span>
+                <span>GRID: ACTIVE</span>
+                <span class="separator">•</span>
+                <span id="uptime-val">UPTIME: ONLINE</span>
+                <span class="separator">•</span>
+                <span>© 2026 AKKI'S HUB</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ========================================================
+         INTERACTIVE OVERLAY SYSTEM (6 DEDICATED PLAYGROUND PANELS)
+         ======================================================== -->
+
+    <!-- MODULE 01: AKKI ARCADE // CYBER SNAKE -->
+    <div class="modal-overlay module-overlay" id="modal-games" aria-hidden="true" role="dialog" aria-labelledby="arcade-modal-title">
+        <div class="modal-window glass-panel arcade-window">
+            <button class="modal-close" data-close="modal-games" aria-label="Close Arcade Modal">&times;</button>
+            <div class="modal-header">
+                <div class="modal-icon-container games cyan">
+                    <span>🎮</span>
+                </div>
+                <div class="modal-title-group">
+                    <span class="modal-tag">ARCADE SUBSYSTEM // MODULE 01</span>
+                    <h3 class="modal-title" id="arcade-modal-title">AKKI ARCADE</h3>
+                    <span class="modal-subheading">CYBER SNAKE // MATRIX RETRO REBOOT</span>
+                </div>
+            </div>
+
+            <div class="modal-body arcade-body">
+                <!-- Arcade Top HUD -->
+                <div class="arcade-hud">
+                    <div class="hud-item">
+                        <span class="hud-label">SCORE</span>
+                        <span class="hud-value" id="snake-score">0</span>
+                    </div>
+                    <div class="hud-item">
+                        <span class="hud-label">HIGH SCORE</span>
+                        <span class="hud-value highlight-cyan" id="snake-high-score">0</span>
+                    </div>
+                    <div class="hud-item">
+                        <span class="hud-label">STATUS</span>
+                        <span class="hud-value highlight-emerald" id="snake-status">READY</span>
+                    </div>
+                    <div class="hud-actions">
+                        <button type="button" class="arcade-mini-btn" id="snake-pause-btn" aria-label="Pause Game">PAUSE</button>
+                        <button type="button" class="arcade-mini-btn" id="snake-restart-btn" aria-label="Restart Game">RESTART</button>
+                    </div>
+                </div>
+
+                <!-- Canvas Game Viewport -->
+                <div class="snake-canvas-wrapper">
+                    <canvas id="snake-canvas" width="400" height="400"></canvas>
+                    <!-- Game Overlay Banner (Start / Pause / Game Over) -->
+                    <div class="snake-overlay-screen" id="snake-overlay">
+                        <div class="snake-overlay-content" id="snake-overlay-content">
+                            <h4 class="overlay-title" id="snake-overlay-title">CYBER SNAKE</h4>
+                            <p class="overlay-desc" id="snake-overlay-desc">Collect glowing energy cores. Avoid grid walls &amp; tail collisions.</p>
+                            <button type="button" class="cyber-btn snake-start-btn" id="snake-start-btn">LAUNCH GAME</button>
+                            <div class="overlay-controls-hint">Desktop: [Arrow Keys] or [W A S D] • [Space: Pause]</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Touch D-Pad (Visible on touch/mobile) -->
+                <div class="snake-touch-controls" id="snake-touch-dpad">
+                    <div class="dpad-row">
+                        <button type="button" class="dpad-btn" id="dpad-up" aria-label="Move Up">▲</button>
+                    </div>
+                    <div class="dpad-row">
+                        <button type="button" class="dpad-btn" id="dpad-left" aria-label="Move Left">◀</button>
+                        <div class="dpad-center">●</div>
+                        <button type="button" class="dpad-btn" id="dpad-right" aria-label="Move Right">▶</button>
+                    </div>
+                    <div class="dpad-row">
+                        <button type="button" class="dpad-btn" id="dpad-down" aria-label="Move Down">▼</button>
+                    </div>
+                </div>
+
+                <!-- Additional Arcade Slots (Subtly interactive locked slots) -->
+                <div class="arcade-slots-section">
+                    <div class="slots-header">ARCADE EXPANSION SLOTS:</div>
+                    <div class="arcade-slots-grid">
+                        <div class="arcade-slot-card active-slot">
+                            <span class="slot-badge">ACTIVE</span>
+                            <span class="slot-name">01 // CYBER SNAKE</span>
+                        </div>
+                        <div class="arcade-slot-card locked-slot" id="slot-game-2" title="Click to inspect slot">
+                            <span class="slot-badge locked">LOCKED</span>
+                            <span class="slot-name">02 // NEON RUNNER</span>
+                            <span class="slot-hint">MODULE NOT INSTALLED</span>
+                        </div>
+                        <div class="arcade-slot-card locked-slot" id="slot-game-3" title="Click to inspect slot">
+                            <span class="slot-badge locked">LOCKED</span>
+                            <span class="slot-name">03 // MATRIX BREAKOUT</span>
+                            <span class="slot-hint">MODULE NOT INSTALLED</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="interactive-hint">ESC or click anywhere outside to close</div>
+                <button type="button" class="cyber-btn" data-close="modal-games">RETURN TO HUB</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODULE 02: AI ZONE // AKKI LOCAL AI NODE -->
+    <div class="modal-overlay module-overlay" id="modal-ai" aria-hidden="true" role="dialog" aria-labelledby="ai-modal-title">
+        <div class="modal-window glass-panel ai-window">
+            <button class="modal-close" data-close="modal-ai" aria-label="Close AI Modal">&times;</button>
+            <div class="modal-header">
+                <div class="modal-icon-container ai purple">
+                    <span>🤖</span>
+                </div>
+                <div class="modal-title-group">
+                    <span class="modal-tag">NEURAL NODE // MODULE 02</span>
+                    <h3 class="modal-title" id="ai-modal-title">AKKI AI // LOCAL NODE</h3>
+                    <div class="disclaimer-chip">[ LOCAL EXPERIMENT // NO EXTERNAL AI CONNECTION ]</div>
+                </div>
+            </div>
+
+            <div class="modal-body ai-body">
+                <!-- Terminal Output Display -->
+                <div class="ai-terminal-log" id="ai-terminal-log" role="log" aria-live="polite">
+                    <div class="ai-msg bot">
+                        <div class="msg-meta"><span class="msg-author">NODE://AKKI-AI</span> <span class="msg-time">00:00</span></div>
+                        <div class="msg-text">Akki Local Node online. Offline heuristic query console initialized. Ask me about Akki, projects, gaming, anime, tech stack, or type <span class="msg-highlight">help</span> for command protocols.</div>
+                    </div>
+                </div>
+
+                <!-- Suggestion Quick Chips -->
+                <div class="ai-quick-chips">
+                    <span class="chip-label">QUICK PROMPTS:</span>
+                    <button type="button" class="ai-chip" data-prompt="who are you">who are you</button>
+                    <button type="button" class="ai-chip" data-prompt="akki">akki</button>
+                    <button type="button" class="ai-chip" data-prompt="projects">projects</button>
+                    <button type="button" class="ai-chip" data-prompt="gaming">gaming</button>
+                    <button type="button" class="ai-chip" data-prompt="anime">anime</button>
+                    <button type="button" class="ai-chip" data-prompt="tech">tech</button>
+                    <button type="button" class="ai-chip" data-prompt="secret">secret</button>
+                    <button type="button" class="ai-chip" data-prompt="time">time</button>
+                </div>
+
+                <!-- Terminal Input Form -->
+                <form class="ai-input-form" id="ai-input-form">
+                    <span class="terminal-prefix">&gt;</span>
+                    <input type="text" class="ai-input" id="ai-input" placeholder="Type a message or command (e.g. 'akki', 'gaming', 'projects')..." autocomplete="off" spellcheck="false" maxlength="150" aria-label="Terminal input">
+                    <button type="submit" class="ai-send-btn" id="ai-send-btn" aria-label="Transmit message">SEND</button>
+                    <button type="button" class="ai-clear-btn" id="ai-clear-btn" title="Clear terminal log" aria-label="Clear terminal">CLEAR</button>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <div class="interactive-hint">Offline keyword synthesis engine • Zero external tracking</div>
+                <button type="button" class="cyber-btn" data-close="modal-ai">RETURN TO HUB</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODULE 03: TECH LAB // PARTICLE GRAVITY LAB -->
+    <div class="modal-overlay module-overlay" id="modal-lab" aria-hidden="true" role="dialog" aria-labelledby="lab-modal-title">
+        <div class="modal-window glass-panel lab-window">
+            <button class="modal-close" data-close="modal-lab" aria-label="Close Tech Lab Modal">&times;</button>
+            <div class="modal-header">
+                <div class="modal-icon-container lab emerald">
+                    <span>🧪</span>
+                </div>
+                <div class="modal-title-group">
+                    <span class="modal-tag">PHYSICS SANDBOX // MODULE 03</span>
+                    <h3 class="modal-title" id="lab-modal-title">PARTICLE GRAVITY LAB</h3>
+                    <span class="modal-subheading">Interactive Real-Time Particle Physics Simulation</span>
+                </div>
+            </div>
+
+            <div class="modal-body lab-body">
+                <!-- Physics Canvas -->
+                <div class="lab-canvas-container">
+                    <canvas id="lab-canvas" width="680" height="380"></canvas>
+                    <div class="lab-instruction-tag">MOVE CURSOR / TOUCH TO WARP GRAVITY • CLICK TO FIRE ENERGY BURST</div>
+                </div>
+
+                <!-- Lab Physics Controls Dock -->
+                <div class="lab-controls-dock">
+                    <div class="control-group">
+                        <label for="lab-force-slider" class="control-label">
+                            FORCE INTENSITY: <span id="lab-force-val" class="highlight-emerald">ATTRACT (50)</span>
+                        </label>
+                        <div class="control-slider-row">
+                            <input type="range" id="lab-force-slider" min="-100" max="100" value="50" step="5" class="cyber-slider">
+                            <button type="button" class="lab-toggle-btn" id="lab-mode-toggle">MODE: ATTRACT</button>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="lab-count-slider" class="control-label">
+                            PARTICLE COUNT: <span id="lab-count-val" class="highlight-cyan">100</span>
+                        </label>
+                        <input type="range" id="lab-count-slider" min="40" max="220" value="100" step="10" class="cyber-slider">
+                    </div>
+
+                    <div class="control-group">
+                        <label for="lab-dist-slider" class="control-label">
+                            LASER LINK DISTANCE: <span id="lab-dist-val" class="highlight-purple">110px</span>
+                        </label>
+                        <input type="range" id="lab-dist-slider" min="50" max="180" value="110" step="10" class="cyber-slider">
+                    </div>
+
+                    <div class="lab-actions-row">
+                        <button type="button" class="cyber-btn-outline" id="lab-burst-btn">⚡ ENERGY BURST</button>
+                        <button type="button" class="cyber-btn-outline" id="lab-reset-btn">↺ RESET LAB</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="interactive-hint">Powered by HTML5 2D Canvas &amp; Vector Physics</div>
+                <button type="button" class="cyber-btn" data-close="modal-lab">RETURN TO HUB</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODULE 04: PROJECTS // INTERACTIVE ARCHIVE -->
+    <div class="modal-overlay module-overlay" id="modal-projects" aria-hidden="true" role="dialog" aria-labelledby="projects-modal-title">
+        <div class="modal-window glass-panel projects-window">
+            <button class="modal-close" data-close="modal-projects" aria-label="Close Projects Modal">&times;</button>
+            <div class="modal-header">
+                <div class="modal-icon-container projects blue">
+                    <span>💻</span>
+                </div>
+                <div class="modal-title-group">
+                    <span class="modal-tag">ARCHIVE DECK // MODULE 04</span>
+                    <h3 class="modal-title" id="projects-modal-title">PROJECTS // ARCHIVE</h3>
+                    <span class="modal-subheading">Select any project entry below to expand technical architecture.</span>
+                </div>
+            </div>
+
+            <div class="modal-body projects-body">
+                <div class="projects-list" id="projects-accordion">
+                    <!-- Project 01 -->
+                    <article class="project-entry active" data-project="churn">
+                        <div class="project-summary-bar">
+                            <div class="project-number">01</div>
+                            <div class="project-main-meta">
+                                <h4 class="project-name">CUSTOMER CHURN PREDICTION</h4>
+                                <span class="project-tech-line">Python · Pandas · Scikit-learn · Machine Learning</span>
+                            </div>
+                            <span class="project-status-pill">PROJECT // DEVELOPMENT</span>
+                            <span class="project-chevron">▼</span>
+                        </div>
+                        <div class="project-details-panel">
+                            <p class="project-description">A machine learning project focused on predicting customer churn from customer data. Implements end-to-end data preprocessing, exploratory feature analysis, and classification pipelines to discover retention risk factors before customers leave.</p>
+                            <div class="project-tech-tags">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Pandas</span>
+                                <span class="tech-tag">Scikit-learn</span>
+                                <span class="tech-tag">Data Preprocessing</span>
+                                <span class="tech-tag">Classification</span>
+                            </div>
+                            <div class="pipeline-diagram">
+                                <span class="pipe-node">Raw Data</span> &rarr;
+                                <span class="pipe-node">Pandas Wrangling</span> &rarr;
+                                <span class="pipe-node">Feature Engineering</span> &rarr;
+                                <span class="pipe-node">ML Classifier</span> &rarr;
+                                <span class="pipe-node active-node">Churn Probability</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 02 -->
+                    <article class="project-entry" data-project="iris">
+                        <div class="project-summary-bar">
+                            <div class="project-number">02</div>
+                            <div class="project-main-meta">
+                                <h4 class="project-name">IRIS ATTENDANCE SYSTEM</h4>
+                                <span class="project-tech-line">Python · OpenCV · Machine Learning</span>
+                            </div>
+                            <span class="project-status-pill">PROJECT // DEVELOPMENT</span>
+                            <span class="project-chevron">▼</span>
+                        </div>
+                        <div class="project-details-panel">
+                            <p class="project-description">A computer-vision attendance project based on biometric iris recognition concepts. Leverages OpenCV for ocular image acquisition, eye boundary localization, iris texture normalization, and automated attendance logging without physical contact.</p>
+                            <div class="project-tech-tags">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">OpenCV</span>
+                                <span class="tech-tag">Computer Vision</span>
+                                <span class="tech-tag">Image Normalization</span>
+                                <span class="tech-tag">Biometrics</span>
+                            </div>
+                            <div class="pipeline-diagram">
+                                <span class="pipe-node">Camera Feed</span> &rarr;
+                                <span class="pipe-node">Pupil Detection</span> &rarr;
+                                <span class="pipe-node">Iris Segmentation</span> &rarr;
+                                <span class="pipe-node">Feature Matching</span> &rarr;
+                                <span class="pipe-node active-node">Attendance Marked</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 03 -->
+                    <article class="project-entry" data-project="metro">
+                        <div class="project-summary-bar">
+                            <div class="project-number">03</div>
+                            <div class="project-main-meta">
+                                <h4 class="project-name">DELHI METRO / DIJKSTRA</h4>
+                                <span class="project-tech-line">C++ · DSA · Dijkstra's Algorithm</span>
+                            </div>
+                            <span class="project-status-pill">PROJECT // DEVELOPMENT</span>
+                            <span class="project-chevron">▼</span>
+                        </div>
+                        <div class="project-details-panel">
+                            <p class="project-description">A shortest-path graph algorithms project modeling the Delhi Metro rail network. Explores efficient station-to-station navigation and extends the algorithmic model with emergency ambulance and hospital routing concepts for rapid medical transit.</p>
+                            <div class="project-tech-tags">
+                                <span class="tech-tag">C++</span>
+                                <span class="tech-tag">Data Structures</span>
+                                <span class="tech-tag">Dijkstra's Algorithm</span>
+                                <span class="tech-tag">Graph Theory</span>
+                                <span class="tech-tag">Emergency Routing</span>
+                            </div>
+                            <div class="pipeline-diagram">
+                                <span class="pipe-node">Metro Graph</span> &rarr;
+                                <span class="pipe-node">Weight Assignment</span> &rarr;
+                                <span class="pipe-node">Min-Heap Priority Queue</span> &rarr;
+                                <span class="pipe-node active-node">Optimal Route Output</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 04 -->
+                    <article class="project-entry" data-project="web">
+                        <div class="project-summary-bar">
+                            <div class="project-number">04</div>
+                            <div class="project-main-meta">
+                                <h4 class="project-name">INTERACTIVE WEB PROJECTS</h4>
+                                <span class="project-tech-line">HTML · CSS · JavaScript · Web APIs</span>
+                            </div>
+                            <span class="project-status-pill">PROJECT // ACTIVE</span>
+                            <span class="project-chevron">▼</span>
+                        </div>
+                        <div class="project-details-panel">
+                            <p class="project-description">Creative websites, browser experiments, and interactive digital playgrounds. Built using vanilla modern Web APIs including HTML5 Canvas rendering, Web Audio synthesis, and procedural neon aesthetics to test the creative limits of the web without bloat.</p>
+                            <div class="project-tech-tags">
+                                <span class="tech-tag">HTML5 Canvas</span>
+                                <span class="tech-tag">Web Audio API</span>
+                                <span class="tech-tag">Vanilla JavaScript</span>
+                                <span class="tech-tag">Cyberpunk CSS</span>
+                                <span class="tech-tag">Gamification</span>
+                            </div>
+                            <div class="pipeline-diagram">
+                                <span class="pipe-node">Concept</span> &rarr;
+                                <span class="pipe-node">Canvas &amp; Audio Core</span> &rarr;
+                                <span class="pipe-node">Cyber UI Styling</span> &rarr;
+                                <span class="pipe-node active-node">Interactive Playground</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="interactive-hint">Accurate project technical specifications • Zero inflated claims</div>
+                <button type="button" class="cyber-btn" data-close="modal-projects">RETURN TO HUB</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODULE 05: ABOUT AKKI // IDENTITY PROFILE -->
+    <div class="modal-overlay module-overlay" id="modal-about" aria-hidden="true" role="dialog" aria-labelledby="about-modal-title">
+        <div class="modal-window glass-panel about-window">
+            <button class="modal-close" data-close="modal-about" aria-label="Close About Modal">&times;</button>
+            <div class="modal-header">
+                <div class="modal-icon-container about amber">
+                    <span>👤</span>
+                </div>
+                <div class="modal-title-group">
+                    <span class="modal-tag">IDENTITY PROFILE // MODULE 05</span>
+                    <h3 class="modal-title" id="about-modal-title">AKASH MAURYA</h3>
+                    <div class="about-role-tags">DEVELOPER · GAMER · TECH EXPLORER</div>
+                </div>
+            </div>
+
+            <div class="modal-body about-body">
+                <!-- Interactive Tabs -->
+                <div class="about-tabs" role="tablist">
+                    <button type="button" class="about-tab active" data-tab="tab-identity" role="tab" aria-selected="true">[ IDENTITY ]</button>
+                    <button type="button" class="about-tab" data-tab="tab-skills" role="tab" aria-selected="false">[ SKILLS ]</button>
+                    <button type="button" class="about-tab" data-tab="tab-interests" role="tab" aria-selected="false">[ INTERESTS ]</button>
+                    <button type="button" class="about-tab" data-tab="tab-building" role="tab" aria-selected="false">[ CURRENTLY BUILDING ]</button>
+                </div>
+
+                <!-- Tab Panels -->
+                <div class="about-tab-content">
+                    <!-- Tab 1: Identity -->
+                    <div class="tab-panel active" id="tab-identity">
+                        <div class="bio-banner">
+                            <span class="bio-prompt">&gt; user.identity</span>
+                            <p class="bio-lead">"I build things just to see what's possible."</p>
+                            <p class="bio-text">Hey, I'm Akash Maurya (Akki). I'm an inquisitive developer, avid gamer, and technology enthusiast who treats coding as a digital playground. Whether it's training predictive models, processing computer vision streams, or designing neon cyber web spaces, I believe software should be fast, exciting, and rewarding to explore.</p>
+                        </div>
+                        <div class="identity-stats-grid">
+                            <div class="stat-card">
+                                <span class="stat-key">CODENAME</span>
+                                <span class="stat-val highlight-amber">Akki</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-key">ORIENTATION</span>
+                                <span class="stat-val">Developer &amp; Explorer</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-key">SPECIALIZATION</span>
+                                <span class="stat-val">Python / ML / Web</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-key">STATUS</span>
+                                <span class="stat-val highlight-emerald">Continuous Learning</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: Skills -->
+                    <div class="tab-panel" id="tab-skills">
+                        <p class="skills-intro">Core languages, frameworks &amp; technical proficiencies in Akki's stack:</p>
+                        <div class="skills-matrix">
+                            <div class="skill-item" data-skill="Python"><span class="skill-icon">🐍</span> <span class="skill-name">Python</span><span class="skill-focus">ML &amp; Scripting</span></div>
+                            <div class="skill-item" data-skill="Java"><span class="skill-icon">☕</span> <span class="skill-name">Java</span><span class="skill-focus">OOP &amp; Core</span></div>
+                            <div class="skill-item" data-skill="C++"><span class="skill-icon">⚡</span> <span class="skill-name">C++</span><span class="skill-focus">DSA &amp; Routing</span></div>
+                            <div class="skill-item" data-skill="JavaScript"><span class="skill-icon">🌐</span> <span class="skill-name">JavaScript</span><span class="skill-focus">Native Web APIs</span></div>
+                            <div class="skill-item" data-skill="HTML"><span class="skill-icon">🧱</span> <span class="skill-name">HTML</span><span class="skill-focus">Semantic Structure</span></div>
+                            <div class="skill-item" data-skill="CSS"><span class="skill-icon">🎨</span> <span class="skill-name">CSS</span><span class="skill-focus">Cyber &amp; Neon UI</span></div>
+                            <div class="skill-item" data-skill="SQL"><span class="skill-icon">🗄️</span> <span class="skill-name">SQL</span><span class="skill-focus">Relational Queries</span></div>
+                            <div class="skill-item" data-skill="Machine Learning"><span class="skill-icon">🧠</span> <span class="skill-name">Machine Learning</span><span class="skill-focus">Scikit-learn</span></div>
+                            <div class="skill-item" data-skill="OpenCV"><span class="skill-icon">👁️</span> <span class="skill-name">OpenCV</span><span class="skill-focus">Computer Vision</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 3: Interests -->
+                    <div class="tab-panel" id="tab-interests">
+                        <div class="interests-grid">
+                            <div class="interest-card">
+                                <div class="interest-icon">🎮</div>
+                                <h5 class="interest-title">Gaming</h5>
+                                <p class="interest-desc">Immersive action games, retro mechanics, Roblox experiences, and competitive gaming.</p>
+                            </div>
+                            <div class="interest-card">
+                                <div class="interest-icon">⚔️</div>
+                                <h5 class="interest-title">Anime</h5>
+                                <p class="interest-desc">Cyberpunk sci-fi worlds, peak shonen action, dark fantasy, and high-energy animation.</p>
+                            </div>
+                            <div class="interest-card">
+                                <div class="interest-icon">💡</div>
+                                <h5 class="interest-title">Technology</h5>
+                                <p class="interest-desc">Next-generation hardware, AI developments, computer vision, and algorithmic problem-solving.</p>
+                            </div>
+                            <div class="interest-card">
+                                <div class="interest-icon">🧪</div>
+                                <h5 class="interest-title">Creative Experiments</h5>
+                                <p class="interest-desc">Synthesizing audio on the fly, canvas physics sandboxes, and unconventional browser interactions.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 4: Currently Building -->
+                    <div class="tab-panel" id="tab-building">
+                        <div class="building-list">
+                            <div class="building-card">
+                                <div class="building-badge active-badge">ACTIVE</div>
+                                <h5 class="building-title">Interactive Web Projects</h5>
+                                <p class="building-desc">Expanding AKKI'S HUB with richer canvas simulations, retro arcade games, and dynamic responsive toys.</p>
+                            </div>
+                            <div class="building-card">
+                                <div class="building-badge in-progress-badge">PIPELINE</div>
+                                <h5 class="building-title">Machine Learning Projects</h5>
+                                <p class="building-desc">Refining predictive modeling pipelines, exploring neural nets, and practical applied data science.</p>
+                            </div>
+                            <div class="building-card">
+                                <div class="building-badge experiment-badge">EXPERIMENT</div>
+                                <h5 class="building-title">Digital Experiments</h5>
+                                <p class="building-desc">Combining audio synthesis, biometrics with OpenCV, and procedural graphic generators.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="interactive-hint">Akash Maurya's verified digital profile</div>
+                <button type="button" class="cyber-btn" data-close="modal-about">RETURN TO HUB</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODULE 06: SECRET VAULT // SECURE TERMINAL -->
+    <div class="modal-overlay module-overlay" id="modal-secret" aria-hidden="true" role="dialog" aria-labelledby="secret-modal-title">
+        <div class="modal-window glass-panel secret-window">
+            <button class="modal-close" data-close="modal-secret" aria-label="Close Secret Modal">&times;</button>
+            <div class="modal-header">
+                <div class="modal-icon-container secret crimson">
+                    <span>👾</span>
+                </div>
+                <div class="modal-title-group">
+                    <span class="modal-tag" id="secret-access-tag">ACCESS LEVEL: UNKNOWN</span>
+                    <h3 class="modal-title" id="secret-modal-title">AKKI // SECURE TERMINAL</h3>
+                    <span class="modal-subheading">Restricted Diagnostic &amp; Easter Egg Command Shell</span>
+                </div>
+            </div>
+
+            <div class="modal-body secret-body">
+                <div class="secret-terminal-log" id="secret-terminal-log" role="log" aria-live="polite">
+                    <div class="terminal-line banner-line">====================================================</div>
+                    <div class="terminal-line banner-line">AKKI SECURE TERMINAL [BUILD v2.0.4 - SANDBOX]</div>
+                    <div class="terminal-line banner-line">TYPE 'help' TO QUERY AVAILABLE ACCESS PROTOCOLS.</div>
+                    <div class="terminal-line banner-line">====================================================</div>
+                </div>
+
+                <!-- Command Hints Bar -->
+                <div class="secret-command-hints">
+                    <span class="hint-label">COMMANDS:</span>
+                    <button type="button" class="cmd-pill" data-cmd="help">help</button>
+                    <button type="button" class="cmd-pill" data-cmd="whoami">whoami</button>
+                    <button type="button" class="cmd-pill" data-cmd="status">status</button>
+                    <button type="button" class="cmd-pill" data-cmd="matrix">matrix</button>
+                    <button type="button" class="cmd-pill" data-cmd="theme">theme</button>
+                    <button type="button" class="cmd-pill" data-cmd="hack">hack</button>
+                    <button type="button" class="cmd-pill" data-cmd="unlock">unlock</button>
+                    <button type="button" class="cmd-pill" data-cmd="konami">konami</button>
+                    <button type="button" class="cmd-pill" data-cmd="clear">clear</button>
+                </div>
+
+                <!-- Secret Command Input Form -->
+                <form class="secret-input-form" id="secret-input-form">
+                    <span class="terminal-prompt">root@akki-hub:~#</span>
+                    <input type="text" class="secret-input" id="secret-input" placeholder="Enter command (e.g. 'help', 'whoami', 'unlock')..." autocomplete="off" spellcheck="false" maxlength="50" aria-label="Secret Command Input">
+                    <button type="submit" class="secret-submit-btn" id="secret-submit-btn">EXECUTE</button>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <div class="interactive-hint">Harmless browser sandbox • No external network execution</div>
+                <button type="button" class="cyber-btn" data-close="modal-secret">RETURN TO HUB</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Legacy / Fallback Coming Soon Modal (Kept for compatibility) -->
+    <div class="modal-overlay" id="coming-soon-modal" aria-hidden="true">
+        <div class="modal-window glass-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <button class="modal-close" id="modal-close-btn" aria-label="Close Modal">&times;</button>
+            <div class="modal-header">
+                <div class="modal-icon-container" id="modal-icon-wrapper">
+                    <span id="modal-icon">🎮</span>
+                </div>
+                <div class="modal-title-group">
+                    <span class="modal-tag" id="modal-tag">MODULE READY</span>
+                    <h3 class="modal-title" id="modal-title">Module</h3>
+                </div>
+            </div>
+            <div class="modal-body">
+                <p class="modal-description" id="modal-desc">Module under active deployment.</p>
+                <div class="module-status-box">
+                    <div class="status-header">
+                        <span class="status-label">INITIALIZATION PROGRESS</span>
+                        <span class="status-value" id="modal-percent">100%</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-bar-fill" id="modal-progress-fill" style="width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="cyber-terminal-snippet">
+                    <span class="prompt">&gt;</span> <span class="command" id="terminal-cmd">sys.load_module("<span id="cmd-name">games</span>")</span>
+                    <span class="response" id="terminal-res">[STATUS: 200 - Module Operational]</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="interactive-hint">✨ Click anywhere outside or press ESC to close</div>
+                <button type="button" class="cyber-btn" id="modal-ack-btn">ACKNOWLEDGE</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AKKI-CHAN Live Companion System -->
+    <aside class="akki-chan-container" id="akki-chan-container" aria-label="Akki-Chan Digital Companion">
+        <!-- Floating Speech Bubble -->
+        <div class="akki-speech-bubble" id="akki-speech-bubble" aria-live="polite">
+            <span class="bubble-tail"></span>
+            <div class="bubble-header">
+                <span class="bubble-name">AKKI-CHAN</span>
+                <span class="bubble-mood" id="akki-mood-badge">♡ IDLE</span>
+            </div>
+            <p class="bubble-text" id="akki-bubble-text">Welcome to Akki's Hub! ♡</p>
+        </div>
+
+        <!-- Floating Zzz Sleep Indicator -->
+        <div class="akki-sleep-indicator" id="akki-sleep-indicator" aria-hidden="true">
+            <span>Z</span><span>z</span><span>z</span>
+        </div>
+
+        <!-- Character Visual Wrapper -->
+        <div class="akki-avatar-wrapper" id="akki-avatar-wrapper" title="Akki-Chan: Click to interact!">
+            <div class="akki-aura-glow" id="akki-aura-glow"></div>
+            <img src="assets/akki-chan.png" alt="Akki-Chan Live Companion" class="akki-avatar-img" id="akki-avatar-img" loading="eager" draggable="false">
+        </div>
+
+        <!-- Mini Futuristic Control Dock -->
+        <div class="akki-controls-dock" id="akki-controls-dock" role="toolbar" aria-label="Akki-Chan Companion Controls">
+            <button type="button" class="akki-ctrl-btn" id="akki-btn-talk" title="Talk to Akki-Chan">TALK</button>
+            <button type="button" class="akki-ctrl-btn" id="akki-btn-react" title="Playful Reaction">REACT</button>
+            <button type="button" class="akki-ctrl-btn" id="akki-btn-sleep" title="Toggle Sleep Mode">SLEEP</button>
+            <button type="button" class="akki-ctrl-btn" id="akki-btn-follow" title="Toggle Cursor Follow">FOLLOW: ON</button>
+            <button type="button" class="akki-ctrl-btn akki-voice-btn active" id="akki-btn-voice" title="Toggle Voice">VOICE: ON</button>
+            <button type="button" class="akki-ctrl-btn akki-test-btn" id="akki-btn-test" title="Test Voice">TEST</button>
+        </div>
+    </aside>
+
+    <!-- Toast Notification System -->
+    <div class="toast-container" id="toast-container" aria-live="assertive"></div>
+
+    <!-- Main Logic Script -->
+    <script src="script.js"></script>
+</body>
+</html>
+
